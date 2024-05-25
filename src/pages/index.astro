@@ -1,5 +1,8 @@
 ---
+import { getCollection } from "astro:content";
 import Layout from "../layouts/Layout.astro";
+
+const blogPosts = await getCollection("blog");
 ---
 
 <Layout>
@@ -25,10 +28,19 @@ import Layout from "../layouts/Layout.astro";
     >!
   </p>
   <section class="mt-16">
-    <h2 class="font-display text-4xl">Blog</h2>
-    <p class="mt-4">
-      The plan is to write some articles here about whatever I find interesting,
-      most likely Lucia and auth. I just need to find the time...
-    </p>
+    <h2 class="mb-4 font-display text-4xl">Blog</h2>
+    <div class="grid md:grid-cols-2">
+      {
+        blogPosts.map((post) => (
+          <a
+            href={`/blog/${post.slug}`}
+            class="block rounded-md border border-stone-600 p-2 transition-colors hover:border-stone-400"
+          >
+            <span class="font-semibold">{post.data.title}</span>
+            <p class="text-sm text-stone-300">{post.data.description}</p>
+          </a>
+        ))
+      }
+    </div>
   </section>
 </Layout>
