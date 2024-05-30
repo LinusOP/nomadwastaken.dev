@@ -23,17 +23,66 @@ errore gestamina ab frustra, nova intrat is **voce**! Portus moderamine
 effugere: bracchia de tamen Phoebus nostro! Devexo virginitas aliquis inque
 undis at huic auras Minervae crescentis forte in pondus deusve.
 
-```c
-gigaflopsDvd *= floppy_ddr_duplex;
-if (
-  flowchart_output.php_overwrite_risc.intellectual(
-    room + memory_storage_sector(1, prom_refresh, metaRefresh),
-  )
-) {
-  handle += honeypot;
+```astro
+---
+interface Props {
+  "data-language": string;
 }
-memoryFile.cpl_lte = spam(5);
+
+const code = await Astro.slots.render("default");
+const { "data-language": lang } = Astro.props;
+---
+
+<div is="fancy-code-block" class="rounded-md bg-stone-900">
+  <div class="flex items-center border-b border-stone-600 p-2">
+    <span class="text-sm text-stone-400">{lang}</span>
+    <button class="ml-auto" id=`code-copy`>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="lucide lucide-copy"
+        ><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path
+          d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"
+        ></path></svg
+      >
+    </button>
+  </div>
+  <div class="overflow-x-auto p-3 pt-2">
+    <pre class=`not-prose`><Fragment set:html={code} /></pre>
+  </div>
+</div>
+
+<script>
+  class FancyCodeBlock extends HTMLDivElement {
+    constructor() {
+      super();
+
+      const copyButton = this.querySelector("button")!;
+      const codeBlock = this.querySelector("pre")!;
+
+      copyButton.addEventListener("click", async () => {
+        await navigator.clipboard.writeText(codeBlock.innerText);
+      });
+    }
+  }
+
+  customElements.define("fancy-code-block", FancyCodeBlock, {
+    extends: "div",
+  });
+</script>
 ```
+
+**Fiet est** solebat illa aut exsangui, quoniam tibi autem inproba! Flumina
+errore gestamina ab frustra, nova intrat is **voce**! Portus moderamine
+effugere: bracchia de tamen Phoebus nostro! Devexo virginitas aliquis inque
+undis at huic auras Minervae crescentis forte in pondus deusve.
 
 ## Ut per cauda mutato ingredior ferebat luctatur
 
