@@ -3,12 +3,13 @@ import type { GetStaticPaths } from "astro";
 import { getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
 import Codeblock from "../../components/mdx/Codeblock.astro";
+import { render } from "astro:content";
 
 export const getStaticPaths = (async () => {
   const blogEntries = await getCollection("blog");
   return blogEntries.map((entry) => ({
     params: {
-      slug: entry.slug,
+      slug: entry.id,
     },
     props: {
       entry,
@@ -17,17 +18,17 @@ export const getStaticPaths = (async () => {
 }) satisfies GetStaticPaths;
 
 const { entry } = Astro.props;
-const { Content } = await entry.render();
+const { Content } = await render(entry);
 ---
 
 <Layout title={entry.data.title} description={entry.data.description}>
   <div class="pb-4">
     <h1
-      class="mb-2 text-pretty font-display text-5xl text-stone-50 md:text-7xl"
+      class="font-display mb-2 text-5xl text-pretty text-stone-50 md:text-7xl"
     >
       {entry.data.title}
     </h1>
-    <p class="text-base text-stone-400">
+    <p class="mt-4 text-base text-stone-400">
       Published on: {
         new Intl.DateTimeFormat("en-SE", {
           dateStyle: "long",
@@ -36,7 +37,7 @@ const { Content } = await entry.render();
     </p>
   </div>
   <div
-    class="prose prose-stone prose-invert max-w-none prose-headings:text-stone-50"
+    class="prose prose-stone prose-invert prose-headings:text-stone-50 max-w-none"
   >
     <Content components={{ pre: Codeblock }} />
   </div>

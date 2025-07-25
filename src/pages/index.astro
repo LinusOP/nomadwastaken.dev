@@ -28,18 +28,27 @@ const blogPosts = await getCollection("blog");
     >!
   </p>
   <section class="mt-16">
-    <h2 class="mb-4 font-display text-4xl">Blog</h2>
-    <div class="grid md:grid-cols-2">
+    <h2 class="font-display mb-4 text-4xl">Blog</h2>
+    <div class="grid gap-4 md:grid-cols-2">
       {
-        blogPosts.map((post) => (
-          <a
-            href={`/blog/${post.slug}`}
-            class="block rounded-md border border-stone-600 p-2 transition-colors hover:border-stone-400"
-          >
-            <span class="font-semibold">{post.data.title}</span>
-            <p class="text-sm text-stone-300">{post.data.description}</p>
-          </a>
-        ))
+        blogPosts.length > 0 ? (
+          blogPosts.map((post) => (
+            <a
+              href={`/blog/${post.id}`}
+              class="block rounded-md border border-stone-600 p-2 transition-colors hover:border-stone-400"
+            >
+              <span class="font-semibold">{post.data.title}</span>
+              <p class="line-clamp-1 text-sm text-ellipsis text-stone-300">
+                {post.data.description}
+              </p>
+            </a>
+          ))
+        ) : (
+          <span class="col-span-full text-base">
+            Good things come to those who wait... I'll post something here
+            eventually!
+          </span>
+        )
       }
     </div>
   </section>
