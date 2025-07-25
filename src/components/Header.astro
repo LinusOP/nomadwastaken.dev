@@ -5,13 +5,14 @@ import githubLogo from "../images/github-mark-white.svg";
 ---
 
 <header class="flex items-start py-4 text-xl text-stone-50 md:py-8 md:text-2xl">
-  <a href="/" aria-label="Link to homepage"
-    ><Image
+  <a href="/" aria-label="Link to homepage">
+    <Image
       src={logo}
+      loading="eager"
       class="aspect-square w-12 rounded-full transition-transform hover:scale-110 md:w-16"
       alt="My nomad logo consisting of a white N on a blue background"
-    /></a
-  >
+    />
+  </a>
   <div class="ml-auto flex gap-4">
     <a
       href="https://github.com/LinusOP"
@@ -21,6 +22,7 @@ import githubLogo from "../images/github-mark-white.svg";
     >
       <Image
         src={githubLogo}
+        loading="eager"
         alt="Github logo"
         class="aspect-square w-8 transition-transform hover:scale-110 md:w-10"
       />
