@@ -11,45 +11,58 @@ const blogPosts = await getCollection("blog");
     <div class="font-display -mt-3 text-7xl md:-mt-5 md:text-9xl">Nomad</div>
   </h1>
   <p>
-    I'm a hobbyist developer mainly interested in JS and the lovely chaos of the
-    web development landscape.
+    I'm a homelabber who occasionally writes code, experimenting with software
+    and, in particular, networking!
   </p>
   <p class="mt-4">
-    When I'm not coding you can find me moderating the <a
-      href="https://lucia-auth.com"
+    To fuel my networking curiosity I run AS4242423493 within the <a
+      href="https://dn42.dev"
       target="_blank"
       rel="noopener noreferrer"
-      class="text-sky-500 hover:underline">Lucia Auth</a
-    > community, you should <a
-      href="https://discord.com/invite/PwrK3kpVR3"
+      class="text-sky-500 hover:underline">DN42 experminetal network</a
+    >, where I experiment with BGP and how the internet works (<a
+      href="https://gallifrey.network"
       target="_blank"
       rel="noopener noreferrer"
-      class="text-sky-500 hover:underline">join us on discord</a
-    >!
+      class="text-sky-500 hover:underline">gallifrey.network</a
+    > coming soon&trade;).
+    <p class="mt-4">
+      I also help moderate the <a
+        href="https://lucia-auth.com"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-sky-500 hover:underline">Lucia Auth</a
+      > community <a
+        href="https://discord.com/invite/PwrK3kpVR3"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-sky-500 hover:underline">on discord</a
+      >.
+    </p>
+    <section class="mt-16">
+      <h2 class="font-display mb-4 text-4xl">Blog</h2>
+      <div class="grid gap-4 md:grid-cols-2">
+        {
+          blogPosts.length > 0 ? (
+            blogPosts.map((post) => (
+              <a
+                href={`/blog/${post.id}`}
+                class="block rounded-md border border-stone-600 p-2 transition-colors hover:border-stone-400"
+              >
+                <span class="font-semibold">{post.data.title}</span>
+                <p class="line-clamp-1 text-sm text-ellipsis text-stone-300">
+                  {post.data.description}
+                </p>
+              </a>
+            ))
+          ) : (
+            <span class="col-span-full text-base">
+              Good things come to those who wait... I'll post something here
+              eventually!
+            </span>
+          )
+        }
+      </div>
+    </section>
   </p>
-  <section class="mt-16">
-    <h2 class="font-display mb-4 text-4xl">Blog</h2>
-    <div class="grid gap-4 md:grid-cols-2">
-      {
-        blogPosts.length > 0 ? (
-          blogPosts.map((post) => (
-            <a
-              href={`/blog/${post.id}`}
-              class="block rounded-md border border-stone-600 p-2 transition-colors hover:border-stone-400"
-            >
-              <span class="font-semibold">{post.data.title}</span>
-              <p class="line-clamp-1 text-sm text-ellipsis text-stone-300">
-                {post.data.description}
-              </p>
-            </a>
-          ))
-        ) : (
-          <span class="col-span-full text-base">
-            Good things come to those who wait... I'll post something here
-            eventually!
-          </span>
-        )
-      }
-    </div>
-  </section>
 </Layout>
